@@ -163,29 +163,23 @@
 
         <!-- Informações do Estudante (exemplo estático) -->
         <div class="student-info" id="studentInfo">
-            <div class="info-row">
-                <span class="info-label">Nome Completo:</span>
-                <span class="info-value">Ana Carolina Silva</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">CGM:</span>
-                <span class="info-value">2024001</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Turma:</span>
-                <span class="info-value">3º Ano A</span>
-            </div>
-            <div class="info-row">
-                <span class="info-label">Encaminhamento:</span>
-                <span class="info-value">
-                    <span class="encaminhamento-value">Monitoria</span>
-                </span>
-            </div>
-             <div class="info-row">
-                <span class="info-label">Quantidade de Ocorrencia</span>
-                <span class="info-value">
-                    <span class="encaminhamento-value">5</span>
-                </span>
+             <button type="button" onclick="listarClientes()" class="alinhaBtns">Listar Clientes</button>
+    
+      <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Email</th>
+                <th>Telefone</th>
+                <th>Endereço</th>
+            </tr>
+        </thead>
+        <tbody id="tabela-clientes">
+            <!-- Linhas serão preenchidas pelo JavaScript -->
+        </tbody>
+    </table>
             </div>
             <!-- <div class="info-row">
                 <span class="info-label">Quantidade de Ocorrencia</span>
