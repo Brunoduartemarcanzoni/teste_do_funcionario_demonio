@@ -118,8 +118,8 @@ app.get('/funcionario', (req, res) => {
     const cpf = req.query.cpf || '';  // Recebe o CPF da query string (se houver)
 
     if (cpf) {
-        // Se CPF foi passado, busca alunos que possuam esse CPF ou parte dele
-        const query = `SELECT * FROM aluno WHERE cpf LIKE ?`;
+        // Se CPF foi passado, busca funcionario que possuam esse CPF ou parte dele
+        const query = `SELECT * FROM funcionario WHERE cpf LIKE ?`;
 
         db.all(query, [`%${cpf}%`], (err, rows) => {
             if (err) {
@@ -137,7 +137,7 @@ app.get('/funcionario', (req, res) => {
                 console.error(err);
                 return res.status(500).json({ message: 'Erro ao buscar funcionario.' });
             }
-            res.json(rows);  // Retorna todos os alunos
+            res.json(rows);  // Retorna todos os funcionarios
         });
     }
 });
@@ -147,14 +147,10 @@ app.get('/funcionario', (req, res) => {
 // Atualizar funcionario
 app.put('/funcionario/cpf/:cpf', (req, res) => {
     const { cpf } = req.params;
-    const {  nome,telefone, email, rg, genero, data_de_nascimento, cep, logradouro, numero, complemento, cidade, bairro, estado, numero_de_matricula, curso, periodo, turno, nome_responsavel, telefone_responsavel, parentesco_responsavel, cpf_responsavel,   email_responsavel
+    const {  nome, data_de_nascimento, rg,genero, estado_civil, email, email_institucional, telefone, telefone_alternativo, cep, logradouro, numero, complemento , bairro, cidade, estado, data_adimissão, numero_matricula, cargo, carga_horaria, contrato} = req.body;
 
-    } = req.body;
-
-    const query = `UPDATE aluno SET nome = ?,telefone = ?, email = ?, cpf = ?, rg = ?, genero = ? , data_de_nascimento = ? , cep = ? , logradouro = ? , numero = ? , complemento = ? , cidade = ? , bairro = ? , estado = ? , numero_de_matricula = ? , curso = ? , periodo = ? , turno = ? , nome_responsavel = ? , telefone_responsavel = ? , parentesco_responsavel = ? , cpf_responsavel = ? ,   email_responsavel = ? `;
-    db.run(query, [ nome,telefone, email, cpf, rg, genero, data_de_nascimento, cep, logradouro, numero, complemento, cidade, bairro, estado, numero_de_matricula, curso, periodo, turno, nome_responsavel, telefone_responsavel, parentesco_responsavel, cpf_responsavel,   email_responsavel
-
-    ], function (err) {
+    const query = `UPDATE funcionario SET nome = ?, data_de_nascimento = ?, cpf = ?, rg = ?, genero = ?, estado_civil = ?, email = ?, email_institucional = ?, telefone = ?, telefone_alternativo = ?, cep = ?, logradouro = ?, numero = ?, complemento = ?, bairro = ?, cidade = ?, estado = ?, data_adimissão = ?, numero_matricula = ?, cargo = ?, carga_horaria = ?, contrato = ?`;
+    db.run(query, [ nome, data_de_nascimento, cpf, rg, genero, estado_civil, email, email_institucional, telefone, telefone_alternativo, cep, logradouro, numero, complemento , bairro, cidade, estado, data_adimissão, numero_matricula, cargo, carga_horaria, contrato ], function (err) {
         if (err) {
             return res.status(500).send('Erro ao atualizar funcionario.');
         }
