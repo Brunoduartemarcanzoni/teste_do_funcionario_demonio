@@ -103,7 +103,7 @@ async function atualizarCliente() {
     };
 
     try {
-        const response = await fetch(`/clientes/cpf/${cpf}`, {
+        const response = await fetch(`/alunos/cpf/${cpf}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
@@ -112,23 +112,15 @@ async function atualizarCliente() {
         });
 
         if (response.ok) {
-            alert('Cliente atualizado com sucesso!');
+            alert('aluno atualizado com sucesso!');
         } else {
             const errorMessage = await response.text();
-            alert('Erro ao atualizar cliente: ' + errorMessage);
+            alert('Erro ao atualizar aluno: ' + errorMessage);
         }
     } catch (error) {
         console.error('Erro ao atualizar cliente:', error);
-        alert('Erro ao atualizar cliente.');
+        alert('Erro ao atualizar aluno.');
     }
 }
 
 
-async function limpaCliente() {
-    document.getElementById('nome').value = '';
-    document.getElementById('cpf').value = '';
-    document.getElementById('email').value = '';
-    document.getElementById('telefone').value = '';
-    document.getElementById('endereco').value = '';
-
-}
