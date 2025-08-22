@@ -203,21 +203,21 @@ app.post('/aluno', (req, res) => {
 // Listar aluno
 // Endpoint para listar todos os alunos ou buscar por CPF
 app.get('/aluno', (req, res) => {
-    const cpf = req.query.cpf || '';  // Recebe o CPF da query string (se houver)
+    const numero_de_matricula = req.query.cpf || '';  // Recebe o CGM da query string (se houver)
 
-    if (cpf) {
-        // Se CPF foi passado, busca funcionario que possuam esse CPF ou parte dele
-        const query = `SELECT * FROM aluno WHERE cpf LIKE ?`;
+    if (numero_de_matricula) {
+        // Se CPF foi passado, busca funcionario que possuam esse Cgm ou parte dele
+        const query = `SELECT * FROM aluno WHERE cgm LIKE ?`;
 
-        db.all(query, [`%${cpf}%`], (err, rows) => {
+        db.all(query, [`%${numero_de_matricula}%`], (err, rows) => {
             if (err) {
                 console.error(err);
                 return res.status(500).json({ message: 'Erro ao buscar aluno.' });
             }
-            res.json(rows);  // Retorna os clientes encontrados ou um array vazio
+            res.json(rows);  // Retorna os alunos encontrados ou um array vazio
         });
     } else {
-        // Se CPF não foi passado, retorna todos os aluno
+        // Se Cgm não foi passado, retorna todos os aluno
         const query = `SELECT * FROM aluno`;
 
         db.all(query, (err, rows) => {
@@ -233,9 +233,9 @@ app.get('/aluno', (req, res) => {
 
 
 // Atualizar aluno
-app.put('/aluno/cpf/:cpf', (req, res) => {
-    const { cpf } = req.params;
-    const {  nome,telefone, email, rg, genero, data_de_nascimento, cep, logradouro, numero, complemento, cidade, bairro, estado, numero_de_matricula, curso, periodo, turno, nome_responsavel, telefone_responsavel, parentesco_responsavel, cpf_responsavel,   email_responsavel
+app.put('/aluno/cgm/:cgm', (req, res) => {
+    const { numero_de_matricula } = req.params;
+    const {  nome,telefone, email,cpf ,rg, genero, data_de_nascimento, cep, logradouro, numero, complemento, cidade, bairro, estado,  curso, periodo, turno, nome_responsavel, telefone_responsavel, parentesco_responsavel, cpf_responsavel,   email_responsavel
 
     } = req.body;
 

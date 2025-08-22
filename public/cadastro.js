@@ -48,37 +48,37 @@ async function cadastrarAluno(event) {
         alert('Erro ao cadastrar cliente.');
     }
 }
-// Função para listar todos os clientes ou buscar clientes por CPF
+// Função para listar todos os clientes ou buscar alunos por cgm
 async function listarClientes() {
-    const cpf = document.getElementById('cpf').value.trim();  // Pega o valor do CPF digitado no input
+    const numero_de_matricula = document.getElementById('aluno_matricula').value.trim();  // Pega o valor do cgm digitado no input
 
-    let url = '/clientes';  // URL padrão para todos os clientes
+    let url = '/aluno';  // URL padrão para todos os clientes
 
-    if (cpf) {
+    if (numero_de_matricula) {
         // Se CPF foi digitado, adiciona o parâmetro de consulta
-        url += `?cpf=${cpf}`;
+        url += `?aluno_matricula=${numero_de_matricula}`;
     }
 
     try {
         const response = await fetch(url);
         const clientes = await response.json();
 
-        const tabela = document.getElementById('tabela-clientes');
+        const tabela = document.getElementById('tabela-alunos');
         tabela.innerHTML = ''; // Limpa a tabela antes de preencher
 
-        if (clientes.length === 0) {
+        if (alunos.length === 0) {
             // Caso não encontre clientes, exibe uma mensagem
             tabela.innerHTML = '<tr><td colspan="6">Nenhum cliente encontrado.</td></tr>';
         } else {
-            clientes.forEach(cliente => {
+            alunos.forEach(aluno => {
                 const linha = document.createElement('tr');
                 linha.innerHTML = `
-                    <td>${cliente.id}</td>
-                    <td>${cliente.nome}</td>
-                    <td>${cliente.cpf}</td>
-                    <td>${cliente.email}</td>
-                    <td>${cliente.telefone}</td>
-                    <td>${cliente.endereco}</td>
+                    
+                    <td>${aluno-nome}</td>
+                    <td>${aluno-cpf}</td>
+                    <td>${aluno-email}</td>
+                    <td>${aluno-telefone}</td>
+
                 `;
                 tabela.appendChild(linha);
             });
@@ -103,7 +103,7 @@ async function atualizarCliente() {
     };
 
     try {
-        const response = await fetch(`/alunos/cpf/${cpf}`, {
+        const response = await fetch(`/aluno/cgm/${numero_de_matricula}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
